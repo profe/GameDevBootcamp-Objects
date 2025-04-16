@@ -6,8 +6,8 @@ public class Bullet : MonoBehaviour
     public const float DEFAULT_DAMAGE = 1f;
     public const string DEFAULT_TARGET_TAG = "Player";
 
-    [SerializeField] private float speed, damage;
-    private string targetTag;
+    [SerializeField] protected float speed, damage;
+    [SerializeField] protected string targetTag;
 
     public Bullet(float damage, string targetTag, float speed)
     {
@@ -41,6 +41,11 @@ public class Bullet : MonoBehaviour
         return targetTag;
     }
 
+    public void SetTargetTag(string tag)
+    {
+        this.targetTag = tag;
+    }
+
     private void Update()
     {
         Move();
@@ -51,18 +56,7 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
-    public void Damage(IDamageable damageable)
-    {
-        if (damageable != null)
-        {
-            damageable.TakeDamage(damage);
-            //Debug.Log("Damaged something!");
-            GameManager.GetInstance().scoreManager.IncrementScore();
-            Destroy(gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag(targetTag))
         {
@@ -72,4 +66,15 @@ public class Bullet : MonoBehaviour
         IDamageable damageable = other.GetComponent<IDamageable>();
         Damage(damageable);
     }
+
+    public virtual void Damage(IDamageable damageable)
+    {
+        if (damageable != null)
+        {
+            damageable.TakeDamage(damage);
+            GameManager.GetInstance().scoreManager.IncrementScore();
+            Destroy(gameObject);
+        }
+    }
+
 }

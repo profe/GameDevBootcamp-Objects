@@ -4,12 +4,22 @@ using System;
 public abstract class Enemy : PlayableObject
 {
     [SerializeField] protected float speed;
+    [SerializeField] protected float attackRange, attackTime = 0;
     protected Transform target;
     private EnemyType enemyType;
 
+    private float timer = 0;
+    private float setSpeed = 0;
+
+    public void SetEnemy(float attackRange, float attackTime)
+    {
+        this.attackRange = attackRange;
+        this.attackTime = attackTime;
+    }
 
     protected virtual void Start()
     {
+        setSpeed = speed;
         try
         {
             target = GameObject.FindWithTag("Player").transform;
@@ -27,6 +37,15 @@ public abstract class Enemy : PlayableObject
         if (target != null)
         {
             Move(target.position);
+            if (Vector2.Distance(transform.position, target.position) < attackRange)
+            {
+                speed = 0; //stop moving while attacking within range
+                Attack(attackTime);
+            }
+            else
+            {
+                speed = setSpeed; //move again while not in attack range
+            }
         }
         else
         {
@@ -57,7 +76,18 @@ public abstract class Enemy : PlayableObject
         transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
-
+    public override void Attack(float interval)
+    {
+        if (timer <= interval)
+        {
+            timer += Time.deltaTime;
+        }
+        else
+        {
+            timer = 0;
+            Shoot();
+        }
+    }
     public override void Die()
     {
         Debug.Log("Enemy died");

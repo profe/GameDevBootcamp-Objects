@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e524c49314e4183b13e731426e2f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponBulletPrefab: {fileID: 1365713927705430681, guid: 65e9d9abd31014c5bad86fe0ad3035f4, type: 3}
+  weaponBulletPrefab: {fileID: -9122053473682731243, guid: 65e9d9abd31014c5bad86fe0ad3035f4, type: 3}
   speed: 3
   attackRange: 0.1
   attackTime: 0.1
