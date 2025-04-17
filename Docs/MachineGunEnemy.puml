@@ -1,0 +1,24 @@
+@startuml
+start
+:Machine Gun Enemy;
+while (Update)
+    :Move Enemy Towards Player;
+    if (Player in Range?) then (yes)
+        :Stop Enemy Movement;
+        if (Attack Time Reached?) then (yes)
+            :Reset Attack Timer;
+            :Increment Shooting Timer;
+            if (Shooting Timer from Firing Rate Reached?) then (yes)
+                :Shoot Bullet;
+                :Reset Shooting Timer;
+            endif
+        else
+            :Increment Attack Timer (with Delta time);
+        endif
+    else
+        :Reset Enemy Movement;
+    endif
+endwhile
+-[hidden]->
+detach
+@enduml

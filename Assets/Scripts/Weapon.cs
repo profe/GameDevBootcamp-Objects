@@ -15,7 +15,7 @@ public class Weapon
 
     public void Shoot(PlayableObject player, float timeToDie = 5)
     {
-        Debug.Log($"Shooting from weapon {name} with {GetDamage()} damage");
+        //Debug.Log($"Shooting from weapon {name} with {GetDamage()} damage");
         Bullet tempBullet = GameObject.Instantiate(bullet, player.transform.position, player.transform.rotation);
         tempBullet.SetBullet(GetDamage(), GetTarget(), GetSpeed());
 

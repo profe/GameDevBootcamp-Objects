@@ -72,7 +72,6 @@ public class Bullet : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(damage);
-            GameManager.GetInstance().scoreManager.IncrementScore();
             Destroy(gameObject);
         }
     }

@@ -385,10 +385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a0d45021b9041a68c8ec85259e2c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponBulletPrefab: {fileID: 0}
+  weaponBulletPrefab: {fileID: -9122053473682731243, guid: 2349ee013e09044f897cc968f9c4c770, type: 3}
   speed: 3
   attackRange: 5
-  attackTime: 0.1
+  attackTime: 2
+  laserColor: {r: 1, g: 0, b: 0, a: 1}
+  width: 0.05
 --- !u!1 &8150613855326428227
 GameObject:
   m_ObjectHideFlags: 0

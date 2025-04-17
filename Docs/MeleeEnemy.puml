@@ -1,0 +1,22 @@
+@startuml
+start
+:Melee Enemy;
+while (Update)
+    :Move Enemy Towards Player;
+    if (Player in Range?) then (yes)
+        :Stop Enemy Movement;
+        if (Attack Time Reached?) then (yes)
+            :Reset Attack Timer;
+            :Self Detonation;
+            :Destroy Game Object;
+            stop
+        else
+            :Increment Attack Timer (with Delta time);
+        endif
+    else
+        :Reset Enemy Movement;
+    endif
+endwhile
+-[hidden]->
+detach
+@enduml

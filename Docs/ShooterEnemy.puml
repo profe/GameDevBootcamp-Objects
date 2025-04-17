@@ -1,0 +1,21 @@
+@startuml
+start
+:Shooter Enemy;
+while (Update)
+    :Move Enemy Towards Player;
+    if (Player in Range?) then (yes)
+        :Stop Enemy Movement;
+        :Draw Laser from Enemy to Player;
+        if (Attack Time Reached?) then (yes)
+            :Reset Attack Timer;
+            :Shoot Bullet;
+        else
+            :Increment Attack Timer (with Delta time);
+        endif
+    else
+        :Reset Enemy Movement;
+    endif
+endwhile
+-[hidden]->
+detach
+@enduml

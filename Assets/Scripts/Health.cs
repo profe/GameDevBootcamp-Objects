@@ -48,4 +48,9 @@ public class Health
     {
         AddHealth(healthRegenRate * Time.deltaTime);
     }
+
+    public void FullHeal()
+    {
+        CurrentHealth = maxHealth;
+    }
 }

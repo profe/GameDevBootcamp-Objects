@@ -9,7 +9,7 @@ public abstract class Enemy : PlayableObject
     private EnemyType enemyType;
 
     private float timer = 0;
-    private float setSpeed = 0;
+    protected float setSpeed = 0;
 
     public void SetEnemy(float attackRange, float attackTime)
     {
@@ -90,13 +90,15 @@ public abstract class Enemy : PlayableObject
     }
     public override void Die()
     {
-        Debug.Log("Enemy died");
+        //Debug.Log("Enemy died");
+        //GameManager.GetInstance().scoreManager.IncrementScore(); //could refactor method to take in a score to increment by. then each enemy can have their own value for incrementing score by
+        GameManager.GetInstance().PlaySound(Sound.EnemyDestroyed);
         Destroy(gameObject);
     }
 
     public override void TakeDamage(float damage)
     {
-        Debug.Log($"Enemy amaged");
+        //Debug.Log($"Enemy amaged");
         health.DeductHealth(damage);
         if (health.CurrentHealth <= 0)
         {

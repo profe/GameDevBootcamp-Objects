@@ -26,6 +26,7 @@ public class MachineGunEnemy : Enemy
         shootingTimer += Time.deltaTime;
         if (shootingTimer < (1.0f / firingRate))
         {
+            GameManager.GetInstance().PlaySound(Sound.MachineGunEnemyShoot);
             weapon.Shoot(this);
             shootingTimer = 0;
         }

@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
 
     //unity events
     public UnityEvent OnScoreUpdate;
+    public UnityEvent OnHighScoreUpdate;
 
     //properties
     public int Score
@@ -25,13 +26,11 @@ public class ScoreManager : MonoBehaviour
     public int HighScore
     {
         get { return highScore; }
-        set { highScore = value; }
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
+        set
+        {
+            highScore = value;
+            OnHighScoreUpdate?.Invoke();
+        }
     }
 
     public void IncrementScore()
@@ -39,5 +38,12 @@ public class ScoreManager : MonoBehaviour
         Score++;
     }
 
+    public void TryUpdateHighScore()
+    {
+        if (Score > HighScore)
+        {
+            HighScore = Score;
+        }
+    }
 
 }

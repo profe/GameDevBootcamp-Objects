@@ -4,17 +4,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Game Entities")]
-    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Player player;
+    [SerializeField] private Enemy[] enemyPrefabs;
+    [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private Transform[] spawnPositions;
 
     [Header("Game Variables")]
     [SerializeField] private float enemySpawnRate;
 
-    private bool isEnemySpawning;
-
-    public ScoreManager scoreManager;
+    [Header("Managers")]
+    [SerializeField] public ScoreManager scoreManager;
+    [SerializeField] SoundManager soundManager;
 
     private static GameManager instance;
+
+    private bool isEnemySpawning;
 
     public static GameManager GetInstance()
     {
@@ -41,18 +45,11 @@ public class GameManager : MonoBehaviour
         isEnemySpawning = true;
         StartCoroutine(EnemySpawner());
     }
-    void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.E))
-        // {
-        //     CreateEnemy();
-        // }
-    }
 
     void CreateEnemy()
     {
-        //melee enemy right now
-        Enemy tempEnemy = Instantiate(enemyPrefab);
+        //create random enemies continuously
+        Enemy tempEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)]);
         tempEnemy.transform.position = spawnPositions[Random.Range(0, spawnPositions.Length)].position;
     }
 
@@ -71,4 +68,32 @@ public class GameManager : MonoBehaviour
         isEnemySpawning = status;
     }
 
+    public void ResetGame()
+    {
+        GameManager.GetInstance().PlaySound(Sound.ResetGame);
+        //reset player (location, health)
+        player.transform.position = playerSpawnPoint.transform.position;
+        player.FullHeal();
+        //check if new highscore and set if so
+        scoreManager.TryUpdateHighScore();
+        //reset score
+        scoreManager.Score = 0;
+        //remove all enemies
+        DestroyAllEnemies();
+    }
+
+    //should not change score!
+    public void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+    }
+
+    public void PlaySound(Sound sound)
+    {
+        soundManager.PlaySound(sound);
+    }
 }

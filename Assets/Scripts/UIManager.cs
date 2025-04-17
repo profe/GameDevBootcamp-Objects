@@ -33,4 +33,9 @@ public class UIManager : MonoBehaviour
     {
         txtScore.SetText(scoreManager.Score.ToString());
     }
+
+    public void UpdateHighScore()
+    {
+        txtHighScore.SetText(scoreManager.HighScore.ToString());
+    }
 }

@@ -42,6 +42,7 @@ public class Player : PlayableObject
     public override void Shoot()
     {
         Debug.Log("Shooting a bullet");
+        GameManager.GetInstance().PlaySound(Sound.PlayerShoot);
         weapon.Shoot(this);
     }
 
@@ -53,16 +54,23 @@ public class Player : PlayableObject
     public override void Die()
     {
         Debug.Log("Player died");
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        GameManager.GetInstance().ResetGame();
     }
 
     public override void TakeDamage(float damage)
     {
         Debug.Log($"Player took {damage} damage");
+        GameManager.GetInstance().PlaySound(Sound.PlayerHurt);
         health.DeductHealth(damage);
         if (health.CurrentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void FullHeal()
+    {
+        health.FullHeal();
     }
 }

@@ -20,9 +20,10 @@ public class MeleeEnemy : Enemy
     //melee enemies don't shoot, so leaving it blank
     public override void Shoot()
     {
+        GameManager.GetInstance().PlaySound(Sound.MeleeEnemyShoot);
         //target.GetComponent<IDamageable>().TakeDamage(weapon.GetDamage()); //this would be touch damage for being within range if left in
         weapon.Shoot(this, attackTime * 10); //should show detonation "bullet" based on attack time (which is very short, so *10)
-        Debug.Log($"Melee enemy detonated, trying for damage : {weapon.GetDamage()}");
+        //Debug.Log($"Melee enemy detonated, trying for damage : {weapon.GetDamage()}");
         Destroy(gameObject);
     }
 }
