@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16edf8026852b4a22b329be87391bb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunPowerupTime: 10
 --- !u!50 &2123311032795092976
 Rigidbody2D:
   serializedVersion: 5

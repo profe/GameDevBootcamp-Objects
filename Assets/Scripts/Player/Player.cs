@@ -1,5 +1,5 @@
 using System;
-using Unity.Android.Gradle;
+using System.Collections;
 using UnityEngine;
 
 public class Player : PlayableObject
@@ -15,8 +15,7 @@ public class Player : PlayableObject
 
     public Action OnDeath;
 
-    public bool hasGunPowerup;
-
+    private bool hasGunPowerup;
     private Rigidbody2D playerRB;
     private Camera cam;
 
@@ -84,8 +83,17 @@ public class Player : PlayableObject
         return hasGunPowerup;
     }
 
-    public void SetHasGunPowerup(bool hasIt)
+
+
+    public void StartPowerUpCoroutine(float time)
     {
-        hasGunPowerup = hasIt;
+        hasGunPowerup = true;
+        StartCoroutine(TurnOffGunPowerup(time));
+    }
+
+    IEnumerator TurnOffGunPowerup(float time)
+    {
+        yield return new WaitForSeconds(time);
+        hasGunPowerup = false;
     }
 }
