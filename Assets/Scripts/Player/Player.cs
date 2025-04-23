@@ -1,3 +1,5 @@
+using System;
+using Unity.Android.Gradle;
 using UnityEngine;
 
 public class Player : PlayableObject
@@ -5,17 +7,25 @@ public class Player : PlayableObject
 
     private string nickName;
 
-    [SerializeField] private Camera cam;
     [SerializeField] private float speed;
     [SerializeField] private float weaponDamage = 1, bulletSpeed = 10;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float startHealth;
+    [SerializeField] private float regenRate;
+
+    public Action OnDeath;
+
+    public bool hasGunPowerup;
 
     private Rigidbody2D playerRB;
+    private Camera cam;
 
     //changed from Start to awake to ensure that it runs first so action subscription stuff works (that depends on players health existing)
     private void Awake()
     {
-        health = new Health(100, 0.5f, 100);
+        health = new Health(maxHealth, regenRate, startHealth);
         playerRB = GetComponent<Rigidbody2D>();
+        cam = Camera.main; //important for prefab player since camera cant be set in unity inspector
 
         weaponBulletPrefab.SetBullet(weaponDamage, "Enemy", bulletSpeed);
         weapon = new Weapon("Player Weapon", weaponBulletPrefab);
@@ -41,7 +51,7 @@ public class Player : PlayableObject
 
     public override void Shoot()
     {
-        Debug.Log("Shooting a bullet");
+        //Debug.Log("Shooting a bullet");
         GameManager.GetInstance().PlaySound(Sound.PlayerShoot);
         weapon.Shoot(this);
     }
@@ -54,13 +64,13 @@ public class Player : PlayableObject
     public override void Die()
     {
         Debug.Log("Player died");
-        //Destroy(gameObject);
-        GameManager.GetInstance().ResetGame();
+        OnDeath?.Invoke();
+        Destroy(gameObject);
     }
 
     public override void TakeDamage(float damage)
     {
-        Debug.Log($"Player took {damage} damage");
+        //Debug.Log($"Player took {damage} damage");
         GameManager.GetInstance().PlaySound(Sound.PlayerHurt);
         health.DeductHealth(damage);
         if (health.CurrentHealth <= 0)
@@ -69,8 +79,13 @@ public class Player : PlayableObject
         }
     }
 
-    public void FullHeal()
+    public bool HasGunPowerup()
     {
-        health.FullHeal();
+        return hasGunPowerup;
+    }
+
+    public void SetHasGunPowerup(bool hasIt)
+    {
+        hasGunPowerup = hasIt;
     }
 }

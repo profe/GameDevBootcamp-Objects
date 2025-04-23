@@ -7,5 +7,7 @@ public enum Sound
     MeleeEnemyShoot,
     MachineGunEnemyShoot,
     ShooterEnemyShoot,
+    GunPowerupPickup,
+    NukePickup,
     ResetGame
 }

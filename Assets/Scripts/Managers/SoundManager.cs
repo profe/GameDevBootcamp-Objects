@@ -3,7 +3,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource _backgroundMusic, _playerSFX, _enemySFX;
-    [SerializeField] private AudioClip _clipPlayerShoot, _clipPlayerHurt, _clipEnemyDestroyed, _clipMeleeEnemyShoot, _clipMachineGunEnemyShoot, _clipShooterEnemyShoot, _clipReset;
+    [SerializeField] private AudioClip _clipPlayerShoot, _clipPlayerHurt, _clipEnemyDestroyed, _clipMeleeEnemyShoot, _clipMachineGunEnemyShoot, _clipShooterEnemyShoot, _clipGunPowerupPickup, _clipNukePickup, _clipReset;
 
     public void PlaySound(Sound sound)
     {
@@ -26,6 +26,12 @@ public class SoundManager : MonoBehaviour
                 break;
             case Sound.ShooterEnemyShoot:
                 _enemySFX.PlayOneShot(_clipShooterEnemyShoot);
+                break;
+            case Sound.GunPowerupPickup:
+                _playerSFX.PlayOneShot(_clipGunPowerupPickup);
+                break;
+            case Sound.NukePickup:
+                _playerSFX.PlayOneShot(_clipNukePickup);
                 break;
             case Sound.ResetGame:
                 //pause background music

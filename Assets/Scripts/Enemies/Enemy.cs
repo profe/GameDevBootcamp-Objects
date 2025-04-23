@@ -6,7 +6,6 @@ public abstract class Enemy : PlayableObject
     [SerializeField] protected float speed;
     [SerializeField] protected float attackRange, attackTime = 0;
     protected Transform target;
-    private EnemyType enemyType;
 
     private float timer = 0;
     protected float setSpeed = 0;
@@ -53,13 +52,6 @@ public abstract class Enemy : PlayableObject
         }
     }
 
-    public void SetEnemyType(EnemyType enemyType)
-    {
-        this.enemyType = enemyType;
-    }
-
-
-
     public override void Move(float speed) //to be used if there is no player in the scene
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -92,7 +84,9 @@ public abstract class Enemy : PlayableObject
     {
         //Debug.Log("Enemy died");
         //GameManager.GetInstance().scoreManager.IncrementScore(); //could refactor method to take in a score to increment by. then each enemy can have their own value for incrementing score by
+        GameManager.GetInstance().NotifyDeath(this);
         GameManager.GetInstance().PlaySound(Sound.EnemyDestroyed);
+        GameManager.GetInstance().scoreManager.IncrementScore();
         Destroy(gameObject);
     }
 

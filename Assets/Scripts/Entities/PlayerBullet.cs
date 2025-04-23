@@ -7,6 +7,5 @@ public class PlayerBullet : Bullet
     public override void Damage(IDamageable damageable)
     {
         base.Damage(damageable);
-        GameManager.GetInstance().scoreManager.IncrementScore();
     }
 }
