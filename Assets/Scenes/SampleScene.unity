@@ -367,7 +367,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145580974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7870.0005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1653,7 +1653,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 532317383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7870.0005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2283,7 +2283,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811353847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7870.0005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2374,7 +2374,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811750090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7870.0005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3021,7 +3021,7 @@ MonoBehaviour:
     spawnAmount: 1
   - pickup: {fileID: 2360833889949440395, guid: d4589e39be9b8482c9ae1b62e2617499, type: 3}
     spawnAmount: 1
-  pickupProbability: 0.85
+  pickupProbability: 0.2
 --- !u!4 &1060426769
 Transform:
   m_ObjectHideFlags: 0
@@ -3229,6 +3229,8 @@ MonoBehaviour:
   _clipMeleeEnemyShoot: {fileID: 8300000, guid: 73dad77685ad7f245a328b263f8b4844, type: 3}
   _clipMachineGunEnemyShoot: {fileID: 8300000, guid: 70748a9a5514bf945a8e9e0ffb51172d, type: 3}
   _clipShooterEnemyShoot: {fileID: 8300000, guid: 45ac5533c9f2cf64c87b9a40a7525288, type: 3}
+  _clipGunPowerupPickup: {fileID: 8300000, guid: 9b594bea12c14124ea04a2de4be10849, type: 3}
+  _clipNukePickup: {fileID: 8300000, guid: 3812ec0ee2f17ef41b0c5ec2438d5c69, type: 3}
   _clipReset: {fileID: 8300000, guid: 0c836c3fb1cb15049a877ad68bdee601, type: 3}
 --- !u!1 &1207859168
 GameObject:
@@ -4808,7 +4810,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098768440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7870.0005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []

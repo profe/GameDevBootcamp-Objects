@@ -2,9 +2,10 @@
 
 Asteroids-like 2D retro-style game during CircuitStream Game Development Bootcamp using Unity 6
 
+![screengrab of part 2 gameplay](./Docs/part2.gif)
+
 ## Part 1 - Add Objects to Objects!
 
-![screengrab of part 1 gameplay](./Docs/part1.gif)
 Features:
 
 - UI using Unity Events and C# Actions to update score, high schore, and player health
@@ -14,6 +15,18 @@ Features:
   - Machine Gun Enemy: approaches the player and shoots bullets with high rate but low accuracy (e.g.: 5 bullets per second)
   - Shooter Enemy: stays away from the player and shoots bullets with high accuracy but low rate (e.g.: 1 shot per 3 seconds)
 - Music and sound effects for shooting, damaging, reseting game
+
+## Part 2 - Add Power-Ups to Objects!
+
+Features:
+
+- UI now includes number of nukes available and start/end game screen
+- Added powerups using OOP design (Pickup and 3 types of pickups):
+  - Health: heals player with random number between min/max values
+  - Nuke: destroys all enemies on screen (but not powerups), limited to 5 (based on size of array in Unity Inspector for UI Manager)
+  - Gun Powerup: 10 second machine gun powerup
+- Organized Scripting folder
+- Added additional sound effects for powerups
 
 ## Documentation
 
