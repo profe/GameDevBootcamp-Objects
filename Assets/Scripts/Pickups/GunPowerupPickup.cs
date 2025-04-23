@@ -21,7 +21,7 @@ public class GunPowerupPickup : Pickup
     // }
     IEnumerator TurnOffGunPowerup(float time)
     {
-        //Debug.Log("before turning off gun powerup");
+        Debug.Log("before turning off gun powerup");
         yield return new WaitForSeconds(time);
         Debug.Log("after turning off gun powerup");
         GameManager.GetInstance().GetPlayer().SetHasGunPowerup(false);

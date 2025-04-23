@@ -27,6 +27,7 @@ Features:
   - Gun Powerup: 10 second machine gun powerup
 - Organized Scripting folder
 - Added additional sound effects for powerups
+- Used Player Prefs to save high score
 
 ## Documentation
 
