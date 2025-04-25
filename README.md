@@ -2,7 +2,7 @@
 
 Asteroids-like 2D retro-style game during CircuitStream Game Development Bootcamp using Unity 6
 
-![screengrab of part 2 gameplay](./Docs/part2.gif)
+![screengrab of part 2 gameplay](./Docs/part3_0.gif)
 
 ## Part 1 - Add Objects to Objects!
 
@@ -28,6 +28,15 @@ Features:
 - Organized Scripting folder
 - Added additional sound effects for powerups
 - Used Player Prefs to save high score
+
+## Part 3 - Enhance Objects!
+
+Features:
+
+- [Nery] Added levels to game to increase difficulty over time:
+  - UI updated and store highest level in PlayerPrefs
+  - Level dictates increasing enemy spawn rate using [logarithmic function](https://www.desmos.com/calculator/evhaxcv1jt)
+  - Level dictates decreasing pickup spawn rate using [multiplative inverse function](https://www.desmos.com/calculator/djhkukw7ea)
 
 ## Documentation
 

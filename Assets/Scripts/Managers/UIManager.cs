@@ -9,11 +9,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text txtHealth;
     [SerializeField] private TMP_Text txtScore;
     [SerializeField] private TMP_Text txtHighScore;
+    [SerializeField] private TMP_Text txtLevel;
+    [SerializeField] private TMP_Text txtHighLevel;
 
     [Header("Menu")]
     [SerializeField] private GameObject menuCanvas;
     [SerializeField] private GameObject labelGameOver;
     [SerializeField] private TMP_Text menuHighScore;
+    [SerializeField] private TMP_Text menuHighLevel;
 
     [Header("NukeUI")]
     [SerializeField] private GameObject[] nukes;
@@ -27,6 +30,7 @@ public class UIManager : MonoBehaviour
         scoreManager = GameManager.GetInstance().scoreManager;
         scoreManager.SetMaxNukes(nukes.Length);
         UpdateHighScore();
+        UpdateHighLevel();
     }
 
     private void OnDisable()
@@ -45,10 +49,21 @@ public class UIManager : MonoBehaviour
         txtScore.SetText(scoreManager.Score.ToString());
     }
 
+    public void UpdateLevel()
+    {
+        txtLevel.SetText(scoreManager.Level.ToString());
+    }
+
     public void UpdateHighScore()
     {
         txtHighScore.SetText(scoreManager.HighScore.ToString());
         menuHighScore.SetText($"High Score : {scoreManager.HighScore}");
+    }
+
+    public void UpdateHighLevel()
+    {
+        txtHighLevel.SetText(scoreManager.HighLevel.ToString());
+        menuHighLevel.SetText($"High Level: {scoreManager.HighLevel}");
     }
 
     public void UpdateNukes()

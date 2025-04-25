@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class PickupSpawner : MonoBehaviour
 {
-    [SerializeField] private PickupSpawn[] pickups;
-
     [Range(0, 1)]
-    [SerializeField] private float pickupProbability;
+    [SerializeField] private float minPickupProbability;
+
+    [SerializeField] private PickupSpawn[] pickups;
 
     private List<Pickup> pickupPool = new List<Pickup>();
 
@@ -27,6 +27,12 @@ public class PickupSpawner : MonoBehaviour
     public void SpawnPickup(Vector2 spawnPos)
     {
         if (pickupPool.Count == 0) { return; }
+
+        //calculate pickup probability based off of level: https://www.desmos.com/calculator/djhkukw7ea
+        int currentLevel = GameManager.GetInstance().scoreManager.Level;
+        float probCalculation = 1f / currentLevel + minPickupProbability;
+        float pickupProbability = Mathf.Clamp(probCalculation, 0f, 1f);
+        Debug.Log($"Current level {currentLevel} has pickup probability of {pickupProbability}");
 
         if (Random.Range(0.0f, 1.0f) < pickupProbability)
         {
