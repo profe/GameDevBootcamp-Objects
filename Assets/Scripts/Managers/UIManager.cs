@@ -21,6 +21,10 @@ public class UIManager : MonoBehaviour
     [Header("NukeUI")]
     [SerializeField] private GameObject[] nukes;
 
+    [Header("Instructions & Settings")]
+    [SerializeField] private GameObject instructionsPanel;
+    [SerializeField] private GameObject settingsPanel;
+
     private Player player;
     private ScoreManager scoreManager;
 
@@ -95,4 +99,27 @@ public class UIManager : MonoBehaviour
         labelGameOver.SetActive(true);
         menuCanvas.SetActive(true);
     }
+
+    public void ShowSettingsPanel()
+    {
+        settingsPanel.SetActive(true);
+        instructionsPanel.SetActive(false);
+    }
+
+    public void ShowInstructionsPanel()
+    {
+        instructionsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+    }
+
+    public void CloseSettingsPanel()
+    {
+        settingsPanel.SetActive(false);
+    }
+
+    public void CloseInstructionsPanel()
+    {
+        instructionsPanel.SetActive(false);
+    }
+
 }
