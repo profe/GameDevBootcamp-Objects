@@ -7,6 +7,5 @@ public class NukePickup : Pickup
         base.OnPicked();
 
         GameManager.GetInstance().scoreManager.IncrementNukes();
-        Debug.Log("hello");
     }
 }

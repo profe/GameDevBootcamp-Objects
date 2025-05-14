@@ -86,7 +86,7 @@ public class ScoreManager : MonoBehaviour
     {
         Score = 0;
         Level = 1;
-        NumNukes = 3;
+        NumNukes = 0;
         OnScoreUpdate?.Invoke();
         OnLevelUpdate?.Invoke();
         OnHighScoreUpdate?.Invoke();

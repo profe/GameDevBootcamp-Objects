@@ -4,6 +4,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource _backgroundMusic, _playerSFX, _enemySFX;
     [SerializeField] private AudioClip _clipPlayerShoot, _clipPlayerHurt, _clipEnemyDestroyed, _clipMeleeEnemyShoot, _clipMachineGunEnemyShoot, _clipShooterEnemyShoot, _clipGunPowerupPickup, _clipNukePickup, _clipReset;
+    [SerializeField] private float volumeStep = 0.1f;
 
     public void PlaySound(Sound sound)
     {
@@ -42,5 +43,27 @@ public class SoundManager : MonoBehaviour
                 _backgroundMusic.PlayDelayed(_clipReset.length);
                 break;
         }
+    }
+
+    public void MusicDown()
+    {
+        _backgroundMusic.volume = Mathf.Clamp(_backgroundMusic.volume - volumeStep, 0f, 1f);
+    }
+
+    public void MusicUp()
+    {
+        _backgroundMusic.volume = Mathf.Clamp(_backgroundMusic.volume + volumeStep, 0f, 1f);
+    }
+
+    public void SoundDown()
+    {
+        _playerSFX.volume = Mathf.Clamp(_playerSFX.volume - volumeStep, 0f, 1f);
+        _enemySFX.volume = Mathf.Clamp(_enemySFX.volume - volumeStep, 0f, 1f);
+    }
+
+    public void SoundUp()
+    {
+        _playerSFX.volume = Mathf.Clamp(_playerSFX.volume + volumeStep, 0f, 1f);
+        _enemySFX.volume = Mathf.Clamp(_enemySFX.volume + volumeStep, 0f, 1f);
     }
 }
