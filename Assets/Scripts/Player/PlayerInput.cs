@@ -52,7 +52,7 @@ public class PlayerInput : MonoBehaviour
             //play sound
             GameManager.GetInstance().PlaySound(Sound.NukePickup);
             //destory all enemies and pickups
-            GameManager.GetInstance().DestroyAllEnemies();
+            GameManager.GetInstance().AttackEnemies(3);
             //GameManager.GetInstance().DestroyAllPickups(); //can comment this out if want to leave pickups
         }
     }

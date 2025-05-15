@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     public const float DEFAULT_SPEED = 10f;
     public const float DEFAULT_DAMAGE = 1f;
     public const string DEFAULT_TARGET_TAG = "Player";
+    private Vector2 moveDirection = Vector2.right;
 
     [SerializeField] protected float speed, damage;
     [SerializeField] protected string targetTag;

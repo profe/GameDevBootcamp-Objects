@@ -116,10 +116,8 @@ MonoBehaviour:
   weaponDamage: 1
   bulletSpeed: 10
   maxHealth: 100
-  startHealth: 50
+  startHealth: 100
   regenRate: 0.5
-  gunPowerupTime: 10
-  hasGunPowerup: 0
 --- !u!114 &3249621284071978077
 MonoBehaviour:
   m_ObjectHideFlags: 0

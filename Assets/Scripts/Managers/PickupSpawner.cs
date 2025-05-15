@@ -5,7 +5,7 @@ public class PickupSpawner : MonoBehaviour
 {
     [Range(0, 1)]
     [SerializeField] private float minPickupProbability;
-
+    [SerializeField] private Pickup bossPickup;
     [SerializeField] private PickupSpawn[] pickups;
 
     private List<Pickup> pickupPool = new List<Pickup>();
@@ -39,6 +39,11 @@ public class PickupSpawner : MonoBehaviour
             chosenPickup = pickupPool[Random.Range(0, pickupPool.Count)];
             Instantiate(chosenPickup, spawnPos, Quaternion.identity);
         }
+    }
+
+    public void BossSpawnPickup(Vector2 spawnPos)
+    {
+        Instantiate(bossPickup, spawnPos, Quaternion.identity);
     }
 }
 
