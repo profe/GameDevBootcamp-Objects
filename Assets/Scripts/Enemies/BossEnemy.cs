@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossEnemy : Enemy
 {
+    [SerializeField] private Slider healthSlider;
     [SerializeField] private float firingRate;
     private float shootingTimer = 0;
 
@@ -13,6 +15,7 @@ public class BossEnemy : Enemy
         base.Start();
         health = new Health(15, 0, 15);
         weapon = new Weapon("Spray Bullet", weaponBulletPrefab);
+        healthSlider.value = 1.0f;
     }
 
     protected override void Update()
@@ -45,14 +48,20 @@ public class BossEnemy : Enemy
             shootingTimer = 0;
         }
     }
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        //update slider to reflect damage
+        healthSlider.value = health.CurrentHealth / health.GetMaxHealth();
+    }
 
     public override void Move(Vector2 direction, Vector2 target)
     {
-        
+
     }
 
     public override void Shoot()
     {
-        
+
     }
 }

@@ -53,4 +53,9 @@ public class Health
     {
         CurrentHealth = maxHealth;
     }
+
+    public float GetMaxHealth()
+    {
+        return this.maxHealth;
+    }
 }

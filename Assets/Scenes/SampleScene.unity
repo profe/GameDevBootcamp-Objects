@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialEnemySpawnRate: 0.3
-  levelWaitTime: 15
+  levelWaitTime: 3
   playerPrefab: {fileID: 672712261921644486, guid: 1db2a7fe6ae1c453ab30406b772963ce, type: 3}
   enemyPrefabs:
   - {fileID: 5009582024050782790, guid: e6f3b04ed40134a099356685b66edde0, type: 3}
