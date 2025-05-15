@@ -83,8 +83,6 @@ public class Player : PlayableObject
         return hasGunPowerup;
     }
 
-
-
     public void StartPowerUpCoroutine(float time)
     {
         hasGunPowerup = true;

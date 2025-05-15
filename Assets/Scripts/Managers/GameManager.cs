@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Entities")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private Enemy[] enemyPrefabs;
+    [SerializeField] private Enemy bossPrefab;
     [SerializeField] private Transform[] spawnPositions;
 
     [Header("Managers")]
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     private Player player;
     private bool isEnemySpawning;
     private bool isPlaying;
+    private bool isBossSpawned;
 
     private static GameManager instance;
 
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         // isEnemySpawning = true;
         // StartCoroutine(EnemySpawner());
         // StartCoroutine(LevelIncreaser());
@@ -64,6 +67,13 @@ public class GameManager : MonoBehaviour
         tempEnemy.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
     }
 
+    void CreateBoss()
+    {
+        isBossSpawned = true;
+        Enemy tempBoss = Instantiate(bossPrefab);
+        tempBoss.transform.position = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)].position;
+    }
+
     //continously spawn enemies using coroutine
     IEnumerator EnemySpawner()
     {
@@ -72,9 +82,18 @@ public class GameManager : MonoBehaviour
             float currentRate = GetEnemySpawnRate();
             //Debug.Log($"Current Level {scoreManager.Level} has enemy spawn rate of {currentRate}");
             yield return new WaitForSeconds(1.0f / currentRate);
-            CreateEnemy();
+
+            if (scoreManager.Level % 5 == 0 && !isBossSpawned)
+            {
+                CreateBoss();
+            }
+            else
+            {
+                CreateEnemy();
+            }
         }
     }
+
 
     //continuosly increase level (which increases enemy spawning) using coroutine
     IEnumerator LevelIncreaser()
@@ -118,13 +137,16 @@ public class GameManager : MonoBehaviour
 
     public void NotifyDeath(Enemy enemy)
     {
-        pickupSpawner.SpawnPickup(enemy.transform.position);
+        if (enemy is BossEnemy)
+        {
+            pickupSpawner.BossSpawnPickup(enemy.transform.position);
+            isBossSpawned = false;
+        }
+        else
+        {
+            pickupSpawner.SpawnPickup(enemy.transform.position);
+        }
     }
-
-
-
-
-
 
     public void StartGame()
     {
@@ -137,6 +159,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameStarter()
     {
+        isBossSpawned = false;
         isEnemySpawning = true;
         isPlaying = true;
         yield return new WaitForSeconds(2);
@@ -175,6 +198,14 @@ public class GameManager : MonoBehaviour
         foreach (Enemy item in FindObjectsByType<Enemy>(FindObjectsSortMode.None)) //dont sort when finding, make it faster
         {
             Destroy(item.gameObject);
+        }
+    }
+
+    public void AttackEnemies(float dmg)
+    {
+        foreach (Enemy item in FindObjectsByType<Enemy>(FindObjectsSortMode.None)) //dont sort when finding, make it faster
+        {
+            item.TakeDamage(dmg);
         }
     }
 

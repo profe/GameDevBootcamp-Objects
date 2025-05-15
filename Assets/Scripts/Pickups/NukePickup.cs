@@ -8,6 +8,4 @@ public class NukePickup : Pickup
 
         GameManager.GetInstance().scoreManager.IncrementNukes();
     }
-
-
 }
