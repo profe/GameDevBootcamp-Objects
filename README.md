@@ -1,6 +1,6 @@
 # Unit 2 - Objects!
 
-Asteroids-like 2D game during CircuitStream Game Development Bootcamp using Unity 6
+Asteroids-like 2D game during CircuitStream Game Development Bootcamp using Unity 6, [Play](https://profe.github.io/GameDevBootcamp-Objects/) on GitHub Pages
 
 ![screengrab of part 3 gameplay](./Docs/part3_1.gif)
 
@@ -38,7 +38,7 @@ Features:
   - Level dictates increasing enemy spawn rate using [logarithmic function](https://www.desmos.com/calculator/evhaxcv1jt)
   - Level dictates decreasing pickup spawn rate using [multiplative inverse function](https://www.desmos.com/calculator/djhkukw7ea)
   - Added health bar to boss enemy
-  - Did WebGL build
+  - Did WebGL build and hosted on GitHub Pages
 - [Aurélie] UI redo and boss enemy:
   - Changed theme of UI to be animal enemies that fire desserts
   - Added boss enemy with shield powerup drop
